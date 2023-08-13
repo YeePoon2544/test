@@ -89,12 +89,9 @@ $emp_empid = $_SESSION["empid"];
                 <?php 
                 include './condb.php';
 
-                if($){
-
-                }
-                
                 ?>
             </tbody>
+            <!-- if else $name $lastname $Age $retrun $ date $prict $status $condb $password -->
         </table>
     </div>
 </div>

@@ -17,6 +17,7 @@
     }
 </style>
 
+
 <div class="card card-custom">
     <div class="card-header">
         <div class="card-title">
@@ -24,8 +25,15 @@
                 <span class="card-label font-weight-bolder text-dark">แบบฟอร์มขอเบิกเงินสวัสดิการค่าแว่นสายตา</span>
             </h3>
         </div>
+
         <?php
+        if ($_SESSION['login'] != "TUlibrary") {
+            header("location:login.php");
+        }
+
         include './condb.php';
+
+        $emp_empid = $_SESSION["empid"];
         $SQLperson = "select * from person where emp_empid = '" . $_SESSION["empid"] . "' ";
         $PerRecords = mysqli_query($conn, $SQLperson);
         while ($rowPerson = mysqli_fetch_assoc($PerRecords)) {
@@ -37,7 +45,24 @@
             $suborgname = $rowPerson['suborgname'];
             $department = $rowPerson['department'];
         }
-        ?>
+
+        $m = date("m");
+        $y = date("Y");
+        $Total = 0;
+        if ($m > 9) {
+            $y = $y + 544;
+        } else {
+            $y = $y = 543;
+        }
+
+        // $SQLTotal = "select total from mst_welfare where emp_empid = '" . $emp_empid . "' and bug_year = '" . $y . "' and status <> 'unapproved' ";
+        // $TotalRecords = mysqli_query($conn, $SQLTotal);
+        // while ($rowTotal = mysqli_fetch_assoc($TotalRecords)) {
+        //     $Total = $Total + $rowTotal['total'];
+        // }
+        // $Total = 2000 - $Total;
+
+        // ?>
     </div>
 
     <!--begin::Form-->
@@ -91,9 +116,9 @@
 
                         <div class="form-group row">
                             <label class="col-form-label">ไฟล์แนบเอกสารประกอบการเบิกค่าแว่นสายตา <span class="text-danger">* &nbsp;&nbsp;</label>
-                            <input class="form-control col-lg-3" type="file" value="" id="file" name="file"  maxlength="350" required>
+                            <input class="form-control col-lg-3" type="file" value="" id="file" name="file" maxlength="350" required>
 
-                            
+
                         </div>
 
                         <div class="card-footer">

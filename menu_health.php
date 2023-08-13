@@ -460,10 +460,10 @@ if (isset($_POST['STno'])) {
 	$Remark = $_POST['remark'];
 	$NowDate = date("Ymdhis");
 
-	$SQLUpdate = "UPDATE `mst_welfare` SET `status` = '" . $_POST['ST2'] . "',`remark` = '" . $Remark . "' WHERE `welfare_id` = " . $STno;
+	$SQLUpdate = "UPDATE mst_welfare SET status = '" . $_POST['ST2'] . "',`remark` = '" . $Remark . "' WHERE welfare_id = " . $STno;
 	if ($conn->query($SQLUpdate) === TRUE) {
 
-		$Sql_Log = "INSERT INTO `log_transection` (`type`, `id`, `emp_empid`, `description`, `tran_date`, `status`, `name`, `remark`) 
+		$Sql_Log = "INSERT INTO log_transection (`type`, `id`, `emp_empid`, `description`, `tran_date`, `status`, `name`, `remark`) 
 			        VALUES ('health','" . $STno . "','" . $sel_emp_empid . "','" . 'เปลี่ยนสถานะ' . "','" . $NowDate . "','" . $ST2 . "','" . $_SESSION["name"] . "','" . $Remark . "') ";
 		$Result_Log = mysqli_query($conn, $Sql_Log);
 

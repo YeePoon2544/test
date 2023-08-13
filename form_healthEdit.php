@@ -24,7 +24,7 @@ include './condb.php';
 
     $id = $_GET["id"];
 
-    $SQLID = "select * from `mst_welfare` where `welfare_id` = '".$id."'";
+    $SQLID = "select * from mst_welfare where welfare_id = '".$id."'";
     $IDRecords = mysqli_query($conn, $SQLID);
     while ($rowID = mysqli_fetch_assoc($IDRecords)) {
             $emp_empid = $rowID['emp_empid'];
@@ -49,7 +49,7 @@ include './condb.php';
     $Total = 0;
     // if ($m > 9) { $y = $y + 545; } else { $y = $y + 543; }
 
-    $SQLTotal = "select total from `mst_welfare` where `emp_empid` = '".$emp_empid."' and `bug_year` = '".$y."' and `status` <> 'unapproved' ";
+    $SQLTotal = "select total from mst_welfare where emp_empid = '".$emp_empid."' and bug_year = '".$y."' and status <> 'unapproved' ";
     $TotalRecords = mysqli_query($conn, $SQLTotal);
     while ($rowTotal = mysqli_fetch_assoc($TotalRecords)) {
             $Total = $Total + $rowTotal['total'];

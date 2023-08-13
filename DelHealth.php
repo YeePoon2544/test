@@ -12,11 +12,11 @@
 if($id != "")
   {
                     include('condb.php');
-                    $query ="DELETE FROM `mst_welfare` WHERE `mst_welfare`.`welfare_id` = $id";  
+                    $query ="DELETE FROM mst_welfare WHERE mst_welfare.welfare_id = $id";  
 
                         if ($conn->query($query) === TRUE ) {
 
-                            $SQLWelfare = "select * from `detail_welfare` where `welfare_id` = '".$id."' ";
+                            $SQLWelfare = "select * from detail_welfare where welfare_id = '".$id."' ";
                             $WelfareRecords = mysqli_query($conn, $SQLWelfare);
                             while ($RowWelfare = mysqli_fetch_assoc($WelfareRecords)) { 
                                 $welfare_no = $RowWelfare['welfare_no'];
@@ -30,12 +30,12 @@ if($id != "")
                                 if($welfare_file2 != "" ) { $file=$path.$welfare_file2; unlink($file); }  
                                 if($welfare_file3 != "" ) { $file=$path.$welfare_file3; unlink($file); }
 
-                                $SQLDelDet ="DELETE FROM `detail_welfare` WHERE `detail_welfare`.`welfare_no` = $welfare_no";
+                                $SQLDelDet ="DELETE FROM detail_welfare WHERE detail_welfare.welfare_no = $welfare_no";
 
                                 if ($conn->query($SQLDelDet) === TRUE ) { }
                             }
 
-                                $Sql_Log = "INSERT INTO `log_transection` (`type`, `id`, `emp_empid`, `description`, `tran_date`, `status`, `name`) 
+                                $Sql_Log = "INSERT INTO log_transection (`type`, `id`, `emp_empid`, `description`, `tran_date`, `status`, `name`) 
                                 VALUES ('health','".$id."','".$emp_empid."','".'ลบข้อมูล'."','".$NowDate."','".'Delete'."','".$_SESSION["name"]."') "; 
                                 $Result_Log = mysqli_query($conn, $Sql_Log);                             
 

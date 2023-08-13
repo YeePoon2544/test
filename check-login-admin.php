@@ -60,7 +60,7 @@ if ($status === true) {
 
 	$_SESSION["name"] = $name;
 
-	$SQLPic = "select * from `person` where `thai_name` = '".$name."' ";
+	$SQLPic = "select * from person where thai_name = '".$name."' ";
 	$PicRecords = mysqli_query($conn, $SQLPic);
 	while ($rowContract = mysqli_fetch_assoc($PicRecords)) {
 			$_SESSION["empid"] = $rowContract['emp_empid'];
